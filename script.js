@@ -8,7 +8,7 @@ var url = "https://codeforces.com/contest/" + contestNo + "/problem/";
 parseProblems();
 
 function parseProblems() {
-    const problems = ['A', 'B', 'C', 'D'];
+    const problems = ['A'];
     problems.forEach(problem => getHtml(problem));
 }
 
@@ -33,20 +33,34 @@ function parseIO(problem, html) {
 }
 
 async function saveIO(problem, [inp, out]) {
-    let inpHandle, outHandle;
+    let inpHandle, outHandle, solHandle;
+
+    // Eg: ./A/
+    let dir = "./" + problem + "/";
 
     try {
-        inpHandle = await fs.open(problem.toLowerCase() + ".in", 'w');
-        outHandle = await fs.open(problem.toLowerCase() + "Original.out", 'w');
+        await fs.mkdir(dir)
+                .catch(err => {
+                    // catch any error other than directory not existing
+                    if(err && err.code != 'EEXIST') {
+                        console.log(err);
+                    }
+                });
+        
+        // open file handles
+        solHandle = await fs.open(dir + "sol.cpp", 'w'); // this file is just created
+        inpHandle = await fs.open(dir + problem + ".in", 'w');
+        outHandle = await fs.open(dir + problem + "Original.out", 'w');
 
-        let inpWritePromise = await inpHandle.writeFile(inp);
+        await inpHandle.writeFile(inp);
         console.log(problem + "'s input has been saved.");
 
-        let outWritePromise = await outHandle.writeFile(out);
+        await outHandle.writeFile(out);
         console.log(problem + "'s output has been saved.");
     } catch(err) {
         console.log(err);
     } finally {
+        // close file handles
         inpHandle.close();
         outHandle.close();
     }
