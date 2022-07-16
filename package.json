@@ -1,0 +1,27 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "A contest bot",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikhilreddydev/codeforces-contest-parser.git"
+  },
+  "keywords": [
+    "node",
+    "bash"
+  ],
+  "author": "nikhilreddydev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nikhilreddydev/codeforces-contest-parser/issues"
+  },
+  "homepage": "https://github.com/nikhilreddydev/codeforces-contest-parser#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "cheerio": "^1.0.0-rc.12"
+  }
+}
