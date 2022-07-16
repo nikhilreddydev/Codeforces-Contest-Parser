@@ -49,8 +49,8 @@ async function saveIO(problem, [inp, out]) {
         
         // open file handles
         solHandle = await fs.open(dir + "sol.cpp", 'w'); // this file is just created
-        inpHandle = await fs.open(dir + problem + ".in", 'w');
-        outHandle = await fs.open(dir + problem + "Original.out", 'w');
+        inpHandle = await fs.open(dir + "in.txt", 'w');
+        outHandle = await fs.open(dir + "out.txt", 'w');
 
         await inpHandle.writeFile(inp);
         console.log(problem + "'s input has been saved.");
