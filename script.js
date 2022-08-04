@@ -8,7 +8,7 @@ var url = "https://codeforces.com/contest/" + contestNo + "/problem/";
 parseProblems();
 
 function parseProblems() {
-    const problems = ['A'];
+    const problems = ['A', 'B', 'C', 'D'];
     problems.forEach(problem => getHtml(problem));
 }
 
@@ -63,5 +63,6 @@ async function saveIO(problem, [inp, out]) {
         // close file handles
         inpHandle.close();
         outHandle.close();
+		solHandle.close();
     }
 }
